@@ -16,7 +16,7 @@ def edit_blog(request, blog_id):
     # Retrieve the blog object before processing the request
     blog = get_object_or_404(Blogs, pk=blog_id)
 
-    if request.method == "POST":
+    if request.method == "POST" and request.user == blog.author:
         title = request.POST.get("title")
         subtitle = request.POST.get("subtitle")
         description = request.POST.get("description")
@@ -41,7 +41,7 @@ def create_blog(request):
         subtitle =  request.POST.get("subtitle")
         description = request.POST.get("description")
         image = request.FILES.get("image")
-        blog = Blogs(title=title,subtitle=subtitle,description=description,image=image)
+        blog = Blogs(title=title,subtitle=subtitle,description=description,image=image,author=request.user)
         blog.save()
         return redirect("home")
   
@@ -49,7 +49,7 @@ def create_blog(request):
 @login_required
 def delete_blog(request,blog_id):
     blog = get_object_or_404(Blogs,pk=blog_id)
-    if request.method == "POST":
+    if request.method == "POST" and request.user == blog.author:
         # We need to deleted the blog if delete request is triggeded from the form post request
       blog.delete()
       return redirect("home")

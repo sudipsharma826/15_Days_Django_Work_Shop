@@ -34,6 +34,7 @@
           <p class="text-base leading-8 my-5">{{ blog.subtitle }}</p>
           <p class="text-base leading-8 my-5">{{ blog.description }}</p>
           
+          {% if blog.author == request.user %}
           <!-- Edit Form -->
           <form action="{% url 'edit_blog' blog.id %}" method="post">
             {% csrf_token %}
@@ -45,6 +46,9 @@
             {% csrf_token %}
             <button type="submit" class="bg-red-400 p-2 rounded text-white">Delete me</button>
           </form>
+          {% else %}
+          <p class="text-red-500"></p>
+          {% endif %}
         </div>
       </div>
     </div>
