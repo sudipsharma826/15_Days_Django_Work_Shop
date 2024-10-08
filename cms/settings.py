@@ -5,13 +5,27 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+# Cloduinary Configuration
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+import cloudinary_storage
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUD_NAME'),
+    'API_KEY': os.getenv('API_KEY'),
+    'API_SECRET': os.getenv('API_SECRET'),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-86g0tq3uj&&^&kzpyfk7(at*pe+)@ow4gxn8$q8qry04$*eez_')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']  # For local development
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','https://www.django.sudipsharma.com.np/','https://one5-days-django-work-shop.onrender.com/']  # For local development
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -21,6 +35,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 AUTH_USER_MODEL = 'blog.CustomUser'
@@ -89,12 +105,14 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
+
+
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # To make the images to show in the htrml file, we need to add the following code to the settings.py file:
-MEDIA_URL = "media/"
+MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
 # To redirect user after the login is failed
 LOGIN_URL = "/blog/login"

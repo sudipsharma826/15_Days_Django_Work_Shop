@@ -20,4 +20,5 @@ class Blogs(models.Model):
     image = models.ImageField(upload_to='images', blank=True, null=True)
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1, related_name='blogs')
     created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 

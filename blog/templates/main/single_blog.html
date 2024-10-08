@@ -19,30 +19,20 @@
         <div class="bg-white relative top-0 -mt-32 p-5 sm:p-10">
           <h1 class="text-gray-900 font-bold text-3xl mb-2">{{ blog.title }}</h1>
           
-          <p class="text-gray-700 text-xs mt-2">Written By:
-            <a href="#" class="text-indigo-600 font-medium hover:text-gray-900 transition duration-500 ease-in-out">
-              Ahmad Sultani
-            </a> In
-            <a href="#" class="text-xs text-indigo-600 font-medium hover:text-gray-900 transition duration-500 ease-in-out">
-              Election
-            </a>,
-            <a href="#" class="text-xs text-indigo-600 font-medium hover:text-gray-900 transition duration-500 ease-in-out">
-              Politics
-            </a>
-          </p>
+        
 
           <p class="text-base leading-8 my-5">{{ blog.subtitle }}</p>
           <p class="text-base leading-8 my-5">{{ blog.description }}</p>
           
           {% if blog.author == request.user %}
           <!-- Edit Form -->
-          <form action="{% url 'edit_blog' blog.id %}" method="post">
+          <form action="{% url 'edit_blog' blog.id%}" class="mt-3">
             {% csrf_token %}
             <button type="submit" class="bg-blue-400 p-2 rounded text-white">Edit me</button>
           </form>
 
           <!-- Delete Form -->
-          <form action="{% url 'delete_blog' blog.id %}" method="post" class="mt-3">
+          <form action="{% url 'delete_blog' blog.id %}" method="post"  class="mt-3">
             {% csrf_token %}
             <button type="submit" class="bg-red-400 p-2 rounded text-white">Delete me</button>
           </form>

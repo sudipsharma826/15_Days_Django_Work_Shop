@@ -16,7 +16,11 @@ def edit_blog(request, blog_id):
     # Retrieve the blog object before processing the request
     blog = get_object_or_404(Blogs, pk=blog_id)
 
-    if request.method == "POST" and request.user == blog.author:
+    # Check if the current user is the author of the blog
+    if request.user != blog.author:
+        return redirect("home")  # Redirect if user is not authorized
+
+    if request.method == "POST":
         title = request.POST.get("title")
         subtitle = request.POST.get("subtitle")
         description = request.POST.get("description")
@@ -30,8 +34,9 @@ def edit_blog(request, blog_id):
             blog.image = image
         
         blog.save()  # Save the updated blog object
-        return redirect("home")
-    
+        return redirect("home")  # Redirect after saving
+
+    # Render the edit blog template with the blog data
     return render(request, "main/edit_blog.html", {"blog": blog})
 @login_required
 # Login to get acess to the create blog page
@@ -55,4 +60,7 @@ def delete_blog(request,blog_id):
       return redirect("home")
     else:
        return redirect ("blog/"+str(blog_id))
+    
+def custom_500(request, *args, **kwargs):
+    return render(request, '500.html', status=500)
         
