@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-86g0tq3uj&&^&kzpyfk7(at*pe+)@ow4gxn8$q8qry04$*eez_')
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1','https://www.django.sudipsharma.com.np/','https://one5-days-django-work-shop.onrender.com/']  # For local development
 
