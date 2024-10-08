@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-
+from cloudinary.models import CloudinaryField
 # Creating the table in the database using AbstractUser Model 
 class CustomUser(AbstractUser):
     user_pic = models.ImageField(upload_to='images', null=True, blank=True)
@@ -17,7 +17,7 @@ class Blogs(models.Model):
     title = models.CharField(max_length=25)
     subtitle = models.CharField(max_length=255,blank=True, null=True)
     description = models.TextField()
-    image = models.ImageField(upload_to='images', blank=True, null=True)
+    image = CloudinaryField('image', blank=True, null=True)
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default=1, related_name='blogs')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

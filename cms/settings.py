@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-86g0tq3uj&&^&k
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1','https://www.django.sudipsharma.com.np/','https://one5-days-django-work-shop.onrender.com/']  # For local development
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','https://www.django.sudipsharma.com.np','https://one5-days-django-work-shop.onrender.com']  # For local development
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -107,7 +107,7 @@ USE_TZ = True
 
 
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
