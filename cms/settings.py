@@ -26,7 +26,11 @@ INSTALLED_APPS = [
     'blog',
     'cloudinary',
     'cloudinary_storage',
+    # 'tailwind'
+    # 'theme',
 ]
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = ['127.0.0.1','localhost','127.0.0.1:8000','localhost:8000']
 
 AUTH_USER_MODEL = 'blog.CustomUser'
 
@@ -96,7 +100,7 @@ USE_TZ = True
 
 
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
