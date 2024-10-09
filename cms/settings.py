@@ -5,19 +5,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-# Cloduinary Configuration
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
-import cloudinary_storage
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('CLOUD_NAME'),
-    'API_KEY': os.getenv('API_KEY'),
-    'API_SECRET': os.getenv('API_SECRET'),
-}
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -112,7 +101,26 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # To make the images to show in the htrml file, we need to add the following code to the settings.py file:
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+# MEDIA_URL = "/media/"
+# MEDIA_ROOT = os.path.join(BASE_DIR,"media") ( now using the cloudinary we donnnot need this)
 # To redirect user after the login is failed
 LOGIN_URL = "/blog/login"
+
+# Cloduinary Configuration
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+# Cloudinary storage configuration
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUD_NAME'),
+    'API_KEY': os.getenv('API_KEY'),
+    'API_SECRET': os.getenv('API_SECRET'),
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# Extra Configuration 
+cloudinary.config(
+    cloud_name=os.getenv('CLOUD_NAME'),
+    api_key=os.getenv('API_KEY'),
+    api_secret=os.getenv('API_SECRET')
+)

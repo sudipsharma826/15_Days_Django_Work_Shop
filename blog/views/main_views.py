@@ -61,6 +61,3 @@ def delete_blog(request,blog_id):
     else:
        return redirect ("blog/"+str(blog_id))
     
-def custom_500(request, *args, **kwargs):
-    return render(request, '500.html', status=500)
-        
